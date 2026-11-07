@@ -1,0 +1,362 @@
+
+.owner-layout {
+  --owner-primary: #5558c9;
+  --owner-primary-light: #eeeeff;
+  --owner-text: #252638;
+  --owner-muted: #85879a;
+  --owner-border: #e9eaf1;
+  display: flex;
+  min-height: 100vh;
+  background: #f7f8fc;
+  color: var(--owner-text);
+  font-family: inherit;
+}
+
+.owner-sidebar {
+  position: fixed;
+  z-index: 20;
+  top: 0;
+  right: 0;
+  display: flex;
+  width: 260px;
+  height: 100vh;
+  flex-direction: column;
+  padding: 25px 17px 18px;
+  border-left: 1px solid var(--owner-border);
+  background: #fff;
+}
+
+.owner-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 5px 25px;
+  border-bottom: 1px solid #f0f0f5;
+}
+
+.owner-brand-icon {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 13px;
+  background: var(--owner-primary);
+  color: #fff;
+}
+
+.owner-brand-text,
+.owner-admin-info,
+.owner-topbar-user > div:last-child {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.owner-brand-text strong {
+  font-size: 15px;
+  font-weight: 750;
+}
+
+.owner-brand-text span {
+  color: var(--owner-muted);
+  font-size: 12px;
+}
+
+.owner-admin-card {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin: 23px 0 29px;
+  padding: 13px 10px;
+  border: 1px solid #eeeef5;
+  border-radius: 13px;
+  background: #fafaff;
+}
+
+.owner-admin-avatar {
+  display: flex;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 11px;
+  background: var(--owner-primary-light);
+  color: var(--owner-primary);
+}
+
+.owner-admin-info strong,
+.owner-topbar-user strong {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.owner-admin-info span,
+.owner-topbar-user span {
+  color: var(--owner-muted);
+  font-size: 11px;
+}
+
+.owner-nav-label {
+  margin: 0 10px 12px;
+  color: #999bad;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.owner-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.owner-nav-link {
+  display: flex;
+  min-height: 47px;
+  align-items: center;
+  gap: 12px;
+  padding: 0 13px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  color: #707286;
+  font-size: 13px;
+  font-weight: 550;
+  text-decoration: none;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.owner-nav-link:hover {
+  background: #f7f7fd;
+  color: var(--owner-primary);
+}
+
+.owner-nav-link.active {
+  border-color: #e8e8ff;
+  background: var(--owner-primary-light);
+  color: var(--owner-primary);
+  font-weight: 700;
+}
+
+.owner-nav-arrow {
+  margin-right: auto;
+  opacity: 0;
+}
+
+.owner-nav-link.active .owner-nav-arrow {
+  opacity: 1;
+}
+
+.owner-sidebar-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+}
+
+.owner-security-note {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 12px 10px;
+  border-radius: 10px;
+  background: #f7f8fc;
+  color: #777a91;
+  font-size: 11px;
+}
+
+.owner-security-note svg {
+  flex-shrink: 0;
+  color: #5b9b78;
+}
+
+.owner-logout-button {
+  display: flex;
+  min-height: 45px;
+  align-items: center;
+  gap: 11px;
+  padding: 0 13px;
+  border: 1px solid #f2dddd;
+  border-radius: 11px;
+  background: #fff;
+  color: #c24a4a;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.owner-logout-button:hover {
+  background: #fff5f5;
+}
+
+.owner-main {
+  width: calc(100% - 260px);
+  min-height: 100vh;
+  margin-right: 260px;
+}
+
+.owner-topbar {
+  display: flex;
+  min-height: 88px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 17px 30px;
+  border-bottom: 1px solid var(--owner-border);
+  background: #fff;
+}
+
+.owner-topbar-eyebrow {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--owner-muted);
+  font-size: 11px;
+}
+
+.owner-topbar h1 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 750;
+}
+
+.owner-topbar-user {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+}
+
+.owner-topbar-avatar {
+  display: flex;
+  width: 41px;
+  height: 41px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--owner-primary-light);
+  color: var(--owner-primary);
+  font-size: 17px;
+  font-weight: 750;
+}
+
+.owner-content {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 28px 30px;
+}
+
+@media (max-width: 900px) {
+  .owner-sidebar {
+    width: 225px;
+  }
+
+  .owner-main {
+    width: calc(100% - 225px);
+    margin-right: 225px;
+  }
+
+  .owner-topbar {
+    padding: 16px 20px;
+  }
+
+  .owner-content {
+    padding: 22px 20px;
+  }
+}
+
+@media (max-width: 650px) {
+  .owner-sidebar {
+    width: 70px;
+    align-items: center;
+    padding: 17px 8px;
+  }
+
+  .owner-brand {
+    justify-content: center;
+    padding: 0 0 20px;
+    border: 0;
+  }
+
+  .owner-brand-icon {
+    width: 43px;
+    height: 43px;
+  }
+
+  .owner-brand-text,
+  .owner-admin-info,
+  .owner-nav-label,
+  .owner-nav-link span,
+  .owner-nav-arrow,
+  .owner-security-note span,
+  .owner-logout-button span {
+    display: none;
+  }
+
+  .owner-admin-card {
+    justify-content: center;
+    margin: 14px 0 23px;
+    padding: 5px;
+    border: 0;
+    background: transparent;
+  }
+
+  .owner-admin-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .owner-nav {
+    width: 100%;
+    align-items: center;
+  }
+
+  .owner-nav-link {
+    width: 48px;
+    min-height: 47px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .owner-sidebar-footer {
+    align-items: center;
+    width: 100%;
+  }
+
+  .owner-security-note,
+  .owner-logout-button {
+    width: 48px;
+    height: 44px;
+    min-height: 44px;
+    justify-content: center;
+    padding: 0;
+  }
+
+  .owner-main {
+    width: calc(100% - 70px);
+    margin-right: 70px;
+  }
+
+  .owner-topbar {
+    min-height: 75px;
+    padding: 14px;
+  }
+
+  .owner-topbar h1 {
+    font-size: 16px;
+  }
+
+  .owner-topbar-user > div:last-child {
+    display: none;
+  }
+
+  .owner-content {
+    padding: 18px 12px;
+  }
+}
