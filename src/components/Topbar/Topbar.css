@@ -458,7 +458,9 @@
     padding: 0 12px;
     gap: 8px;
   }
-
+.topbar-left {
+  gap: 6px;
+}
   .topbar-right {
     gap: 8px;
   }
@@ -536,7 +538,10 @@
   .topbar-greeting {
     max-width: 100px;
   }
-
+.topbar-logout {
+  width: 34px;
+  height: 34px;
+}
   .topbar-left {
     gap: 4px;
   }
@@ -554,4 +559,26 @@
     width: 32px;
     height: 32px;
   }
+}
+
+/* زر تسجيل الخروج */
+.topbar-logout {
+  display: none;
+  width: 38px;
+  height: 38px;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #f3dada;
+  border-radius: 50%;
+  background: #fff5f5;
+  color: #dc4545;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.topbar-logout:hover {
+  background: #ffe8e8;
+  border-color: #e9bcbc;
+  color: #c52e2e;
 }

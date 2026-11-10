@@ -13,6 +13,7 @@ import {
   Info,
   CheckCheck,
   X,
+  LogOut,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { apiRequest } from "../../services/api";
@@ -47,7 +48,13 @@ const getRoleLabel = (role) => {
 };
 
 const Topbar = () => {
-const { user, isAuthenticated, loading: authLoading } = useAuth();
+  const {
+    user,
+    isAuthenticated,
+    loading: authLoading,
+    logout,
+  } = useAuth();
+
   const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState([]);
@@ -55,6 +62,11 @@ const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [notificationsOpen, setNotificationsOpen] = useState(false);
   const [loadingNotifications, setLoadingNotifications] = useState(false);
   const [notificationError, setNotificationError] = useState("");
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login", { replace: true });
+  };
 
   const loadNotifications = useCallback(async (showLoading = false) => {
     if (showLoading) setLoadingNotifications(true);
@@ -73,21 +85,21 @@ const { user, isAuthenticated, loading: authLoading } = useAuth();
     }
   }, []);
 
- useEffect(() => {
-  if (authLoading || !isAuthenticated || !user) {
-    setNotifications([]);
-    setUnreadCount(0);
-    return;
-  }
+  useEffect(() => {
+    if (authLoading || !isAuthenticated || !user) {
+      setNotifications([]);
+      setUnreadCount(0);
+      return;
+    }
 
-  loadNotifications();
-
-  const intervalId = window.setInterval(() => {
     loadNotifications();
-  }, 60000);
 
-  return () => window.clearInterval(intervalId);
-}, [authLoading, isAuthenticated, user, loadNotifications]);
+    const intervalId = window.setInterval(() => {
+      loadNotifications();
+    }, 60000);
+
+    return () => window.clearInterval(intervalId);
+  }, [authLoading, isAuthenticated, user, loadNotifications]);
 
   const handleNotificationClick = async (notification) => {
     try {
@@ -143,22 +155,18 @@ const { user, isAuthenticated, loading: authLoading } = useAuth();
   return (
     <header className="topbar">
       <div className="topbar-right">
-          <div className="topbar-heading">
+        <div className="topbar-heading">
           <span className="topbar-title">نظام إدارة</span>
-          
         </div>
+
         <img
           className="topbar-logo"
           src="/logo/logo.png"
           alt="حلول"
         />
-
-      
       </div>
 
       <div className="topbar-left">
-   
-
         <div className="notification-wrapper">
           <button
             className="topbar-icon-button"
@@ -175,6 +183,7 @@ const { user, isAuthenticated, loading: authLoading } = useAuth();
             }}
           >
             <Bell size={19} />
+
             {unreadCount > 0 && (
               <span className="notification-count">
                 {unreadCount > 99 ? "99+" : unreadCount}
@@ -313,10 +322,20 @@ const { user, isAuthenticated, loading: authLoading } = useAuth();
           <div className="user-info">
             <span className="user-name">مرحبا {displayName}</span>
             <span className="user-role">
-             نوع حسابك :  {getRoleLabel(user?.role) }
+              نوع حسابك : {getRoleLabel(user?.role)}
             </span>
           </div>
+        </button>
 
+        {/* زر تسجيل الخروج - يظهر على الهاتف بعد تنسيقه في CSS */}
+        <button
+          type="button"
+          className="topbar-logout"
+          onClick={handleLogout}
+          aria-label="تسجيل الخروج"
+          title="تسجيل الخروج"
+        >
+          <LogOut size={20} />
         </button>
       </div>
     </header>
