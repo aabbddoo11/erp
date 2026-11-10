@@ -1,3 +1,4 @@
+
 import "dotenv/config";
 import express from "express";
 import cors from "cors";
@@ -7,15 +8,30 @@ import hpp from "hpp";
 import errorHandler from "./middleware/errorHandler.js";
 import connectDB from "./config/db.js";
 import router from "./routes/index.js";
+
 const app = express();
 
 app.disable("x-powered-by");
 app.set("trust proxy", 1);
 
+const allowedOrigins = [
+  "https://erp.holol.online"];
 
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
 
+    return callback(null, false);
+  },
+  credentials: true,
+  methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  maxAge: 86400,
+};
 
-app.use(cors());
+app.use(cors(corsOptions));
 
 app.use(
   helmet({
@@ -60,12 +76,12 @@ const uploadLimiter = rateLimit({
   },
 });
 
-
 app.get("/health", (req, res) => {
   res.status(200).json({
     status: "ok",
   });
 });
+
 app.use("/uploads", uploadLimiter);
 app.use("/api", apiLimiter, router);
 
@@ -74,6 +90,7 @@ app.use((req, res) => {
     message: "Route not found",
   });
 });
+
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
